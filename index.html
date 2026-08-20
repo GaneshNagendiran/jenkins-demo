@@ -3,128 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jenkins CI/CD Demo Project</title>
+
+    <title>Jenkins Docker Pipeline</title>
 
     <style>
-        body{
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
-            background-color:#f4f4f4;
-            text-align:center;
-            margin:40px;
         }
 
-        .container{
-            background:white;
-            width:70%;
-            margin:auto;
-            padding:30px;
-            border-radius:10px;
-            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        body {
+            background: linear-gradient(135deg, #1f4037, #99f2c8);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
         }
 
-        h1{
-            color:#2c3e50;
+        .container {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            text-align: center;
         }
 
-        h2{
-            color:#27ae60;
+        h1 {
+            color: #1f4037;
+            margin-bottom: 10px;
         }
 
-        p{
-            font-size:18px;
+        .subtitle {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 18px;
         }
 
-        table{
-            margin:auto;
-            border-collapse:collapse;
-            width:70%;
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: bold;
         }
 
-        table,th,td{
-            border:1px solid #ccc;
+        h2 {
+            color: #1f4037;
+            margin-bottom: 20px;
         }
 
-        th{
-            background:#3498db;
-            color:white;
-            padding:10px;
+        .pipeline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
         }
 
-        td{
-            padding:10px;
+        .stage {
+            background-color: #1f4037;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
         }
 
-        footer{
-            margin-top:25px;
-            color:gray;
-            font-size:15px;
+        .arrow {
+            font-size: 24px;
+            color: #1f4037;
+        }
+
+        .details {
+            text-align: left;
+            background-color: #f4f6f8;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .details h3 {
+            color: #1f4037;
+            margin-bottom: 15px;
+        }
+
+        .details ul {
+            padding-left: 20px;
+        }
+
+        .details li {
+            margin: 10px 0;
+            color: #444;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            .pipeline {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h1>Jenkins CI/CD Pipeline Demo Project</h1>
+        <h1>Jenkins Docker Pipeline</h1>
 
-    <h2>Welcome to My DevOps Project</h2>
+        <p class="subtitle">
+            AWS DevOps May Batch – Jenkins Docker Assignment
+        </p>
 
-    <p>
-        This application has been successfully deployed using
-        <strong>Jenkins Continuous Integration and Continuous Deployment (CI/CD)</strong>.
-    </p>
+        <div class="success">
+            ✓ Application Successfully Built and Deployed Using Jenkins and Docker
+        </div>
 
-    <table>
-        <tr>
-            <th>Technology</th>
-            <th>Description</th>
-        </tr>
+        <h2>CI/CD Pipeline Stages</h2>
 
-        <tr>
-            <td>AWS EC2</td>
-            <td>Hosting the Jenkins Server</td>
-        </tr>
+        <div class="pipeline">
+            <div class="stage">Checkout</div>
+            <div class="arrow">→</div>
 
-        <tr>
-            <td>Jenkins</td>
-            <td>Build and Deployment Automation</td>
-        </tr>
+            <div class="stage">Build</div>
+            <div class="arrow">→</div>
 
-        <tr>
-            <td>GitHub</td>
-            <td>Source Code Repository</td>
-        </tr>
+            <div class="stage">Test</div>
+            <div class="arrow">→</div>
 
-        <tr>
-            <td>Docker</td>
-            <td>Containerization Platform</td>
-        </tr>
+            <div class="stage">Docker Build</div>
+        </div>
 
-        <tr>
-            <td>Nginx</td>
-            <td>Web Server</td>
-        </tr>
-    </table>
+        <div class="details">
 
-    <br>
+            <h3>Project Details</h3>
 
-    <h3>Project Developed By</h3>
+            <ul>
+                <li><strong>Application:</strong> Simple HTML Web Application</li>
+                <li><strong>Source Control:</strong> Git and GitHub</li>
+                <li><strong>CI/CD Tool:</strong> Jenkins</li>
+                <li><strong>Containerization:</strong> Docker</li>
+                <li><strong>Web Server:</strong> Nginx</li>
+                <li><strong>Cloud Platform:</strong> AWS EC2</li>
+                <li><strong>Pipeline Status:</strong> Successfully Completed</li>
+            </ul>
 
-    <p>
-        <strong>Ganesh</strong>
-    </p>
+        </div>
 
-    <p>
-        Jenkins automatically builds and deploys the latest version of this application
-        whenever a new build is triggered.
-    </p>
+        <div class="footer">
+            Created by Ganesh N | AWS DevOps May Batch
+        </div>
 
-    <footer>
-        Jenkins CI/CD Pipeline | AWS EC2 | Docker | GitHub | Created by Ganesh
-    </footer>
-
-</div>
+    </div>
 
 </body>
 </html>
