@@ -4,112 +4,259 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Jenkins Docker Pipeline</title>
+    <title>Ganesh N | DevOps Engineer</title>
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background: linear-gradient(135deg, #1f4037, #99f2c8);
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+
+        nav {
+            background: #111827;
+            color: white;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 30px;
+            padding: 18px 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .container {
-            background: white;
-            max-width: 800px;
-            width: 100%;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            text-align: center;
-        }
-
-        h1 {
-            color: #1f4037;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: #555;
-            margin-bottom: 30px;
-            font-size: 18px;
-        }
-
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
+        .logo {
+            font-size: 22px;
             font-weight: bold;
         }
 
-        h2 {
-            color: #1f4037;
-            margin-bottom: 20px;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
         }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #60a5fa;
+        }
+
+        /* Hero */
+
+        .hero {
+            background: linear-gradient(135deg, #111827, #1e3a8a);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #dbeafe;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            margin: 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .primary-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .secondary-btn {
+            background: white;
+            color: #1e3a8a;
+        }
+
+        .secondary-btn:hover {
+            background: #e5e7eb;
+        }
+
+        /* Sections */
+
+        section {
+            padding: 70px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #111827;
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 700px;
+            margin: auto;
+            color: #6b7280;
+            margin-bottom: 40px;
+        }
+
+        /* Cards */
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #1e3a8a;
+        }
+
+        /* Pipeline */
 
         .pipeline {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: 12px;
         }
 
         .stage {
-            background-color: #1f4037;
+            background: #1e3a8a;
             color: white;
-            padding: 12px 20px;
+            padding: 18px 25px;
             border-radius: 8px;
             font-weight: bold;
+            min-width: 130px;
+            text-align: center;
         }
 
         .arrow {
-            font-size: 24px;
-            color: #1f4037;
+            font-size: 28px;
+            color: #2563eb;
+            font-weight: bold;
         }
 
-        .details {
-            text-align: left;
-            background-color: #f4f6f8;
-            padding: 25px;
-            border-radius: 10px;
+        /* Status */
+
+        .status-container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
         }
 
-        .details h3 {
-            color: #1f4037;
+        .status {
+            display: inline-block;
+            background: #dcfce7;
+            color: #166534;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        #statusMessage {
+            margin-top: 20px;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        /* Contact */
+
+        .contact {
+            background: #111827;
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
             margin-bottom: 15px;
         }
 
-        .details ul {
-            padding-left: 20px;
+        .contact p {
+            color: #d1d5db;
         }
 
-        .details li {
-            margin: 10px 0;
-            color: #444;
+        /* Footer */
+
+        footer {
+            background: #030712;
+            color: #9ca3af;
+            text-align: center;
+            padding: 20px;
         }
 
-        .footer {
-            margin-top: 30px;
-            color: #777;
-            font-size: 14px;
-        }
+        /* Responsive */
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 25px;
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 35px;
             }
 
             .pipeline {
@@ -120,59 +267,258 @@
                 transform: rotate(90deg);
             }
         }
+
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <!-- Navigation -->
 
-        <h1>Jenkins Docker Pipeline</h1>
+    <nav>
+        <div class="logo">Ganesh N | DevOps</div>
 
-        <p class="subtitle">
-            AWS DevOps May Batch – Jenkins Docker Assignment
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#project">Project</a></li>
+            <li><a href="#pipeline">Pipeline</a></li>
+            <li><a href="#technologies">Technologies</a></li>
+            <li><a href="#status">Status</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Hero Section -->
+
+    <section class="hero" id="home">
+
+        <h1>Jenkins CI/CD Pipeline</h1>
+
+        <p>
+            A complete DevOps project demonstrating continuous integration,
+            Docker image creation, and automated pipeline execution using
+            Jenkins, GitHub, Docker, and AWS EC2.
         </p>
 
-        <div class="success">
-            ✓ Application Successfully Built and Deployed Using Jenkins and Docker
+        <div class="hero-buttons">
+            <a href="#pipeline" class="btn primary-btn">
+                View Pipeline
+            </a>
+
+            <a href="#status" class="btn secondary-btn">
+                Check Deployment
+            </a>
         </div>
 
-        <h2>CI/CD Pipeline Stages</h2>
+    </section>
+
+
+    <!-- Project Section -->
+
+    <section id="project">
+
+        <h2 class="section-title">Project Overview</h2>
+
+        <p class="section-description">
+            This project demonstrates a simple CI/CD workflow where the
+            application source code is stored in GitHub and processed through
+            a Jenkins Pipeline to build a Docker image.
+        </p>
+
+        <div class="card-container">
+
+            <div class="card">
+                <h3>Source Code</h3>
+                <p>
+                    Application files and pipeline configuration are stored
+                    and managed using Git and GitHub.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Automation</h3>
+                <p>
+                    Jenkins automatically executes the pipeline stages
+                    defined inside the Jenkinsfile.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Containerization</h3>
+                <p>
+                    Docker packages the application into a container image
+                    using the provided Dockerfile.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Pipeline Section -->
+
+    <section id="pipeline">
+
+        <h2 class="section-title">CI/CD Pipeline Flow</h2>
+
+        <p class="section-description">
+            The Jenkins Pipeline executes the following stages sequentially.
+        </p>
 
         <div class="pipeline">
-            <div class="stage">Checkout</div>
+
+            <div class="stage">1. Checkout</div>
+
             <div class="arrow">→</div>
 
-            <div class="stage">Build</div>
+            <div class="stage">2. Build</div>
+
             <div class="arrow">→</div>
 
-            <div class="stage">Test</div>
+            <div class="stage">3. Test</div>
+
             <div class="arrow">→</div>
 
-            <div class="stage">Docker Build</div>
-        </div>
-
-        <div class="details">
-
-            <h3>Project Details</h3>
-
-            <ul>
-                <li><strong>Application:</strong> Simple HTML Web Application</li>
-                <li><strong>Source Control:</strong> Git and GitHub</li>
-                <li><strong>CI/CD Tool:</strong> Jenkins</li>
-                <li><strong>Containerization:</strong> Docker</li>
-                <li><strong>Web Server:</strong> Nginx</li>
-                <li><strong>Cloud Platform:</strong> AWS EC2</li>
-                <li><strong>Pipeline Status:</strong> Successfully Completed</li>
-            </ul>
+            <div class="stage">4. Docker Build</div>
 
         </div>
 
-        <div class="footer">
-            Created by Ganesh N | AWS DevOps May Batch
+    </section>
+
+
+    <!-- Technologies Section -->
+
+    <section id="technologies">
+
+        <h2 class="section-title">Technologies Used</h2>
+
+        <p class="section-description">
+            The following technologies were used to build and deploy this project.
+        </p>
+
+        <div class="card-container">
+
+            <div class="card">
+                <h3>GitHub</h3>
+                <p>Source code repository and version control.</p>
+            </div>
+
+            <div class="card">
+                <h3>Jenkins</h3>
+                <p>Continuous Integration and pipeline automation.</p>
+            </div>
+
+            <div class="card">
+                <h3>Docker</h3>
+                <p>Application containerization and image creation.</p>
+            </div>
+
+            <div class="card">
+                <h3>Nginx</h3>
+                <p>Web server used to serve the application.</p>
+            </div>
+
+            <div class="card">
+                <h3>AWS EC2</h3>
+                <p>Cloud infrastructure used to host Jenkins and Docker.</p>
+            </div>
+
         </div>
 
-    </div>
+    </section>
+
+
+    <!-- Status Section -->
+
+    <section id="status">
+
+        <h2 class="section-title">Deployment Status</h2>
+
+        <div class="status-container">
+
+            <h3>Application Status</h3>
+
+            <div class="status">
+                ● Pipeline Completed Successfully
+            </div>
+
+            <p>
+                Click the button below to check the current application status.
+            </p>
+
+            <button
+                class="btn primary-btn"
+                onclick="checkStatus()"
+            >
+                Check Application Status
+            </button>
+
+            <div id="statusMessage"></div>
+
+            <p id="dateTime" style="margin-top: 20px; color: #6b7280;"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact Section -->
+
+    <section class="contact">
+
+        <h2>DevOps Project</h2>
+
+        <p>
+            Jenkins CI/CD Pipeline | Docker | GitHub | AWS EC2
+        </p>
+
+        <p style="margin-top: 10px;">
+            Created by Ganesh N
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+        <p>
+            © 2026 Ganesh N | Jenkins Docker CI/CD Project
+        </p>
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        function checkStatus() {
+
+            const message = document.getElementById("statusMessage");
+
+            message.innerHTML =
+                "✓ Application is running successfully!";
+
+            message.style.color = "#16a34a";
+
+        }
+
+
+        function updateDateTime() {
+
+            const now = new Date();
+
+            document.getElementById("dateTime").innerHTML =
+                "Current Server Time: " + now.toLocaleString();
+
+        }
+
+        updateDateTime();
+
+        setInterval(updateDateTime, 1000);
+
+    </script>
 
 </body>
 </html>
